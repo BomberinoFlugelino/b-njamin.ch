@@ -1,0 +1,733 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>B - N J A M I N</title>
+	<meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Plaster|Source+Code+Pro" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet"> 
+
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82871686-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-82871686-3');
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script>
+
+
+    if (screen.width <= 699) {
+        document.location = "mobile.html";
+    }
+
+    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+        
+            var freq_multiplier;
+            var stats1;
+            var SoundDuration;
+            var stats2;
+            var OSC_Types;
+            var OSC_Type;
+            var stats3;
+
+        $(document).ready(function(){
+            //generate frequency multiplier
+            freq_multiplier = Math.floor(Math.random() *  12 ) + 4;
+            stats1 = "frequency multiplier: x" + freq_multiplier
+            document.getElementById("stats1").innerHTML = stats1;
+
+            //generate duration of sound
+            SoundDuration = (Math.round(Math.floor(Math.random() *  50 ) + 100 / 10)*10);
+            stats2 = "sound duration: " + SoundDuration + "ms"
+            document.getElementById("stats2").innerHTML = stats2;
+
+            //oscillator type selection
+            OSC_Types = Array('sine', 'triangle', 'square', 'sawtooth')
+            OSC_Type = OSC_Types[Math.floor(Math.random()*OSC_Types.length)];
+            stats3 = "oscillator type: " + OSC_Type
+            document.getElementById("stats3").innerHTML = stats3;
+
+
+        function refresh() {
+            //generate frequency multiplier
+            freq_multiplier = Math.floor(Math.random() *  12 ) + 4;
+            stats1 = "frequency multiplier: x" + freq_multiplier
+            document.getElementById("stats1").innerHTML = stats1;
+
+
+            //generate duration of sound
+            SoundDuration = (Math.round(Math.floor(Math.random() *  50 ) + 100 / 10)*10);
+            stats2 = "sound duration: " + SoundDuration + "ms"
+            document.getElementById("stats2").innerHTML = stats2;
+
+            //oscillator type selection
+            OSC_Types = Array('sine', 'triangle', 'square', 'sawtooth')
+            OSC_Type = OSC_Types[Math.floor(Math.random()*OSC_Types.length)];
+            stats3 = "oscillator type: " + OSC_Type
+            document.getElementById("stats3").innerHTML = stats3;
+
+        }
+
+
+    //change color (random rgb) and play sound of div class=container square when hover 
+          $(".container").hover(function(){
+              var r = Math.floor(Math.random() * 255);
+              var g = Math.floor(Math.random() * 255);
+              var b = Math.floor(Math.random() * 255);
+              var color = "rgb("+r+","+g+","+b+")"
+              $(this).css("background-color", color);
+
+
+
+              var freq = ( r + g + b ) / 3 * freq_multiplier;
+
+
+
+              var oscillator = audioCtx.createOscillator();
+              var gainNode = audioCtx.createGain();
+
+              oscillator.connect(gainNode);
+              gainNode.connect(audioCtx.destination);
+
+              gainNode.gain.value = 0.01;
+              oscillator.frequency.value = freq;
+              oscillator.type = OSC_Type;
+
+              oscillator.start();
+
+              setTimeout(
+                function() {
+                  oscillator.stop();
+                },
+                SoundDuration
+              );
+            }) 
+        });
+
+    //change color of all div class=container square all x seconds 
+        $(document).ready(function(){
+
+
+
+            function  bgchange() {
+
+              var r2 = Math.floor(Math.random() * 255);
+              var g2 = Math.floor(Math.random() * 255);
+              var b2 = Math.floor(Math.random() * 255);
+              var color2 = "rgb("+r2+","+g2+","+b2+")"
+
+                $(".container").css("background-color", color2);
+            }
+
+            //interval of color change
+            setInterval(bgchange, 833)
+        });
+
+        //change color of all a Texts all x seconds 
+        $(document).ready(function(){
+
+            function  txtchange() {
+
+              var r3 = Math.floor(Math.random() * 255);
+              var g3 = Math.floor(Math.random() * 255);
+              var b3 = Math.floor(Math.random() * 255);
+              var color3 = "rgb("+r3+","+g3+","+b3+")"
+
+                $(".title , .mrt, .sound, .schnizzel, .credit, .stats, .refresh").css("color", color3);
+            }
+
+            //interval of color change
+            setInterval(txtchange, 1041)
+        });
+    </script>
+
+<!-- function for draggable squares -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( ".title , .mrt, .sound, .schnizzel, .credit, .stats, .refresh"  ).draggable();
+  } );
+  </script>
+<script type="text/javascript">
+
+function refresh() {
+    //generate frequency multiplier
+    freq_multiplier = Math.floor(Math.random() *  12 ) + 4;
+    stats1 = "frequency multiplier: x" + freq_multiplier
+    document.getElementById("stats1").innerHTML = stats1;
+
+
+    //generate duration of sound
+    SoundDuration = (Math.round(Math.floor(Math.random() *  50 ) + 100 / 10)*10);
+    stats2 = "sound duration: " + SoundDuration + "ms"
+    document.getElementById("stats2").innerHTML = stats2;
+
+    //oscillator type selection
+    OSC_Types = Array('sine', 'triangle', 'square', 'sawtooth')
+    OSC_Type = OSC_Types[Math.floor(Math.random()*OSC_Types.length)];
+    stats3 = "oscillator type: " + OSC_Type
+    document.getElementById("stats3").innerHTML = stats3;
+
+
+
+
+
+}
+
+</script>
+
+
+
+
+
+    <div class='wrap'>
+        <!-- dragable windows schnizzel -->
+        <div class="title">
+            <a class="title" href="mailto:daniel@b-njamin.ch">Benjamin</a>
+        </div>
+
+        <div class="stats">
+            <p id="stats1"></p>
+            <p id="stats2"></p>
+            <p id="stats3"></p>
+            <p onclick="refresh()" class="refresh">CLICK TO REFRESH</p>
+
+
+
+        </div>
+
+        <div class="sound">
+            <a class="sound" href="#" onClick="MyWindow=window.open('https://soundcloud.com/benjamin-music-1','Sound',width=600,height=300); return false;"> music</a>   
+        </div>
+
+        <div class="mrt">
+            <a class="mrt" href="#" onClick="MyWindow=window.open('http://magicrambatrash.ch/','Sound',width=600,height=300); return false;"> Magic Ramba Trash</a>   
+        </div>
+
+<!--         <div class="schnizzel">
+            <a class="schnizzel" href="#" onClick="MyWindow=window.open('https://www.google.ch/search?q=funny+schnizzel&client=firefox-b-ab&dcr=0&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiGmJKk59LWAhXLhRoKHbNsAtQQ_AUICigB&biw=1409&bih=775','Sound',width=600,height=300); return false;">schnizzel</a>   
+        </div>   -->
+
+        <div class="credit">
+            <a class="credit" href="mailto:simon@b-njamin.ch"> (c) </a>   
+        </div>
+
+        <!-- color changing squares schnizzel -->
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>        
+    </div>
+
+</body>
+
+</html>
