@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<title>B - N J A M I N</title>
+	<meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Plaster|Source+Code+Pro" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet"> 
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body class="mobile">
+
+    <p>get a real computer...</p>
+
+	<div id="slidecontainer">
+		<input type="range" min="1" max="360" value="256" class="slider" id="BackgroundColour">
+		<span id="ValueBackgroundColour"></span>
+	</div>	
+
+	<div id="slidecontainer">
+		<input type="range" min="1" max="360" value="62" class="slider" id="TextColour">
+		<span id="ValueTextColour"></span>
+	</div>	
+
+	<div id="slidecontainer">
+		<input type="range" min="40" max="100" value="50" class="slider" id="FontSize">
+		<span id="ValueFontSize"></span>
+	</div>	
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  // put all your jQuery goodness in here.
+
+	var slider3 = document.getElementById("FontSize");
+	var output3 = document.getElementById("ValueFontSize");
+	output3.innerHTML = slider3.value;
+
+
+	slider3.oninput = function() {
+
+		output3.innerHTML = this.value;
+
+		$(".mobile").css("font-size", this.value + "px");
+
+	}
+
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  // put all your jQuery goodness in here.
+
+	var slider1 = document.getElementById("BackgroundColour");
+	var output1 = document.getElementById("ValueBackgroundColour");
+	output1.innerHTML = slider1.value;
+
+
+	slider1.oninput = function() {
+
+		output1.innerHTML = this.value;
+
+		$(".mobile").css("background-color", "hsl(" + this.value + ", 100%, 50%)");
+
+	}
+
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  // put all your jQuery goodness in here.
+
+	var slider = document.getElementById("TextColour");
+	var output = document.getElementById("ValueTextColour");
+	output.innerHTML = slider.value;
+
+	slider.oninput = function() {
+
+		output.innerHTML = this.value;
+
+		$(".mobile").css("color", "hsl(" + this.value + ", 100%, 50%)");
+}
+
+});
+</script>
+
+
+
+</html>
