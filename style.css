@@ -1,0 +1,230 @@
+
+
+#a {
+	height: 14em;
+	width: 11em;
+	margin: 1em auto;
+	z-index: 2;
+}
+
+div {
+	z-index: 1;
+}
+
+h1 {
+	color: white;
+	margin: 0;
+}
+
+h2 {
+	color: yellow;
+	background-color: blue;
+	font-family: VT323;
+	font-size: 1000px;
+
+}
+
+a:link {
+	color: white;
+/*	background-color: black;
+*/	margin: 0;
+	text-decoration: none;
+}
+
+.wrap{
+    width:100%;    
+}
+
+html, body {
+	margin: 0; height: 100%; overflow: hidden
+}
+
+.mobile {
+	background-color: hsl(256, 100%, 50%);
+	color: hsl(62, 100%, 50%);
+	font-family: VT323;
+	font-size: 50px;
+	margin: 150px;
+	text-align: center;
+	}
+
+.container {
+	position: static;
+	display: inline-block;
+    background:black;
+    height: 5rem;
+    width: 5rem;
+    margin: -10px;
+    z-index: -50;
+}
+
+.title  {
+	background-color: #383838;
+	color: red;
+	font-family: VT323;
+	font-size: 213px;
+	position: absolute;
+	left: 250px;	
+	top: 100px;
+	width: 327px;
+	text-align: center;
+	z-index: 10;
+}
+
+.title:hover {
+	color: yellow;
+	margin: 0;
+	background-color: blue;
+}
+
+.sound  {
+	font-family: VT323;
+	font-size: 94px;
+	position: absolute;
+	left: 470px;
+	top: 53px;
+	width: 126px;
+	text-align: center;
+	z-index: 10;
+	background-color: #484848;
+}
+
+.sound:hover{
+	color: blue;
+	background-color: red;
+
+}
+
+.stats  {
+	font-family: VT323;
+	font-size: 29px;
+	line-height: 60%;
+	position: absolute;
+	color: white;
+	left: 0px;
+	top: 0px;
+	text-align: left;
+	z-index: 10;
+	background-color: #727272;
+	padding: 10px;
+
+}
+
+.stats:hover{
+	color: blue;
+	background-color: red;
+
+}
+
+.refresh  {
+	font-family: VT323;
+	font-size: 32px;
+	line-height: 60%;
+	position: absolute;
+	left: 100px;
+	top: 190px;
+	text-align: left;
+	width: 230px;
+	z-index: 10;
+	background-color: #262626;
+	padding: 13px;
+
+}
+
+.refresh:hover{
+	color: blue;
+	background-color: red;
+
+}
+
+.mrt  {
+	font-family: VT323;
+	font-size: 83px;
+	position: absolute;
+	left: 86px;
+	top: 232px;
+	width: 54px;
+	text-align: center;
+	z-index: 10;
+	background-color: #404040;
+}
+
+.mrt:hover{
+	color: red;
+	background-color: green;
+
+}
+
+.schnizzel  {
+	font-family: VT323;
+	font-size: 56px;
+	position: absolute;
+	left: 470px;
+	top: 53px;
+	width: 234px;
+	text-align: center;
+	z-index: 10;
+	background-color: #303030;
+}
+
+.schnizzel:hover{
+	color: pink;
+	background-color: yellow;
+
+}
+
+.credit  {
+	font-family: VT323;
+	font-size: 45px;
+	position: absolute;
+	left: 419px;
+	top: 274px;
+	width: 234px;
+	text-align: center;
+	z-index: 10;
+	background-color: #606060;
+}
+
+.credit:hover{
+	color: green;
+	background-color: pink;
+}
+
+#slidecontainer {
+	margin-top: 50px;
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
